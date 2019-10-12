@@ -10,8 +10,8 @@
 <body>
 
     <div id="app">
-        <p>{{ curso }}</p>
-        <p v-html="curso"></p>
+        <button v-on:click="incrementar">Clique</button>
+        <p>Botão clicado {{ cliques }} vezes</p>
     </div>
 
 
@@ -19,7 +19,12 @@
         new Vue({
             el: '#app',
             data: {
-                curso: 'Curso de <span style="color: red">VueJS</span>'
+                cliques: 0
+            },
+            methods: {
+                incrementar: function() {
+                    this.cliques++;
+                }
             }
         });
     </script>
