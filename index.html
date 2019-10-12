@@ -10,9 +10,7 @@
 <body>
 
     <div id="app">
-    <p>{{ message }}</p>
-    <p>Meu nome é: {{ nome }}</p>
-    <input v-on:input="mudarNome">
+    <p>Curso: {{ curso }}</p>
     </div>
 
 
@@ -20,14 +18,8 @@
         new Vue({
             el: '#app',
             data: {
-                message: 'Olá VueJS',
-                nome: ''
-            },
-            methods: {
-                mudarNome: function(event) {
-                    this.nome = event.target.value;
-                }
-            }
+                curso: 'VueJS'
+            }            
         });
     </script>
     
