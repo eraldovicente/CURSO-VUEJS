@@ -10,7 +10,7 @@
 <body>
 
     <div id="app">
-    <p>Curso: {{ curso }}</p>
+    <p>Curso: {{ curso }} | {{ instrutor() }}</p>
     </div>
 
 
@@ -19,7 +19,12 @@
             el: '#app',
             data: {
                 curso: 'VueJS'
-            }            
+            },
+            methods: {
+                instrutor: function() {
+                    return 'Plínio Naves';
+                }
+            }           
         });
     </script>
     
