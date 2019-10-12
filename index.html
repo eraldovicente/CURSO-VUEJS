@@ -10,9 +10,8 @@
 <body>
 
     <div id="app">
-        <p>Curso: {{ curso }}</p>
-        <a v-bind:href="docs">VueJS</a>
-        <p>Instrutor: <span v-text="instrutor"></span></p>
+        <p v-once>Nome inteiro: {{ nome }}</p>
+        <p>Nome: {{ getNome() }}</p>
     </div>
 
 
@@ -20,10 +19,14 @@
         new Vue({
             el: '#app',
             data: {
-                curso: 'VueJS',
-                docs: 'https://vuejs.org',
-                instrutor: 'Plínio Naves'
-            }                       
+                nome: 'Plínio Naves'
+            },
+            methods: {
+                getNome: function() {
+                    this.nome = 'Plínio';
+                    return this.nome;
+                }
+            }
         });
     </script>
     
