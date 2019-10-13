@@ -10,16 +10,15 @@
 <body>
 
     <div id="app">
-        <p v-on:click="onClick('p', $event)">
-            Curso de VueJS
-            <button v-on:click.stop="onClick('button', $event)">Clique</button>
-        </p>
-
-        <form>
-            <input type="text">
-            <button type="submit" v-on:click="onSubmit">Enviar sem modificador</button>
-            <button type="submit" v-on:click.prevent.stop="onSubmit">Enviar com modificador</button>
-        </form>
+        <input v-on:keyup="onKey" placeholder="Qualquer tecla">
+        <br>
+        <input v-on:keyup.enter="onKey" placeholder="Após precionar a tecla enter">
+        <br>
+        <input v-on:keyup.enter.esc="onKey" placeholder="Teclas Enter ou Escape">
+        <br>
+        <input v-on:keyup.arrow-up="onKey" placeholder="Tecla Seta para cima">
+        <br>
+        <input v-on:keyup.ctrl.enter.exact="onKey" placeholder="Teclas CTRL + Enter (exact)">
     </div>
 
 
@@ -27,12 +26,8 @@
         new Vue({
             el: '#app',
             methods: {
-                onClick: function(elementoAlvo, event) {
-                    //event.stopPropagation();
-                    console.log(event.type, ':', elementoAlvo);
-                },
-                onSubmit: function(event) {
-                    console.log('Formulário enviado!');
+                onKey: function(event) {
+                    console.log('Tecla ' + '"' + event.key + '"' + ' pressionada!');
                 }
             }
         });
