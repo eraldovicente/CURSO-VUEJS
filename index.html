@@ -40,6 +40,11 @@
             class="caixa"
             :class="nomeDaClasse">
         </div>
+        <div 
+            class="caixa"
+            :class="classeCSS"
+            @click="aplicarClasse = !aplicarClasse">
+        </div>
         <input v-model="nomeDaClasse" placeholder="Nome da classe CSS">
     </div>
 
@@ -52,7 +57,16 @@
             data: {
                 aplicarClasse: false,
                 nomeDaClasse: ''
-            } 
+            },
+            computed: {
+                classeCSS: function() {
+                    return {
+                        azul: this.aplicarClasse,
+                        circulo: this.aplicarClasse,
+                        verde: !this.aplicarClasse
+                    };
+                }
+            }
         });
     </script>
     
