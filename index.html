@@ -10,15 +10,14 @@
 <body>
 
     <div id="app">
-        <input v-on:keyup="onKey" placeholder="Qualquer tecla">
+        <!-- No meu notebook também ativa o click no touchpad scroll -->
+        <button v-on:click.left="onClick">Botão esquerdo</button>  
         <br>
-        <input v-on:keyup.enter="onKey" placeholder="Após precionar a tecla enter">
+        <!-- No touchpad não funciona -->
+        <button v-on:click.middle="onClick">Botão do meio</button>  
         <br>
-        <input v-on:keyup.enter.esc="onKey" placeholder="Teclas Enter ou Escape">
-        <br>
-        <input v-on:keyup.arrow-up="onKey" placeholder="Tecla Seta para cima">
-        <br>
-        <input v-on:keyup.ctrl.enter.exact="onKey" placeholder="Teclas CTRL + Enter (exact)">
+        <!-- Gostei muito disso -->
+        <button v-on:click.right.prevent="onClick">Sem menu de contexto</button>
     </div>
 
 
@@ -26,8 +25,8 @@
         new Vue({
             el: '#app',
             methods: {
-                onKey: function(event) {
-                    console.log('Tecla ' + '"' + event.key + '"' + ' pressionada!');
+                onClick: function(event) {
+                    console.log('Botão ' + event.button + ' pressionado!');
                 }
             }
         });
