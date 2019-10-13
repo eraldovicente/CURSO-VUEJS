@@ -10,23 +10,25 @@
 <body>
 
     <div id="app">
-        <!-- No meu notebook também ativa o click no touchpad scroll -->
-        <button v-on:click.left="onClick">Botão esquerdo</button>  
-        <br>
-        <!-- No touchpad não funciona -->
-        <button v-on:click.middle="onClick">Botão do meio</button>  
-        <br>
-        <!-- Gostei muito disso -->
-        <button v-on:click.right.prevent="onClick">Sem menu de contexto</button>
+       <a v-bind:href="docs">VueJS</a> 
+       <br>
+       <button v-on:click="onClick">Clique</button>
+       <hr>
+       <a :href="docs">VueJS</a>
+       <br>
+       <button @click="onClick">Clique</button>
     </div>
 
 
     <script type="text/javascript">
         new Vue({
             el: '#app',
+            data: {
+                docs: 'https://vuejs.org'
+            },
             methods: {
                 onClick: function(event) {
-                    console.log('Botão ' + event.button + ' pressionado!');
+                    console.log('Evento: ', event.type);
                 }
             }
         });
