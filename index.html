@@ -10,9 +10,15 @@
 <body>
 
     <div id="app">
-        <!-- Não é bom fazer isso, pois deixa o código pouco reutilizavel-->
-        <p>{{ curso }} => {{ curso.split('').reverse().join('') }}</p>
-        <p>{{ curso }} => {{ cursoInvertido }}</p>
+        <p>Nome original: {{ curso }}</p>
+        <!-- Computed Properties faz cache da dependência. 
+        Você otimiza aplicação, isso ideal para lógicas complexas -->
+        <p>Nome invertido (computed properties): {{ cursoInvertidoComputed }}</p>
+        <!-- O método é chamado em cada renderização -->
+        <p>Nome invertido (method): {{ cursoInvertidoMethod() }}</p>
+        <p>Autor: {{ nomeDoAutorInteiro ? 'Eraldo Vicente' : 'Eraldo'  }}</p>
+        <button @click="nomeDoAutorInteiro = !nomeDoAutorInteiro">Alterar nome do autor</button>
+        <br>
         <input @keyup.enter="alterarNomeDoCurso">
 
     </div>
@@ -22,16 +28,22 @@
         new Vue({
             el: '#app',
             data: {
-                curso: 'Curso de VueJS'
+                curso: 'Curso de VueJS',
+                nomeDoAutorInteiro: false
             },
             computed: {
-                cursoInvertido: function() {
+                cursoInvertidoComputed: function() {
+                    console.log('Computed!');
                     return this.curso.split('').reverse().join('');
                 }
             },
             methods: {
                 alterarNomeDoCurso: function() {
                     this.curso = event.target.value;
+                },
+                cursoInvertidoMethod: function() {
+                    console.log('Method!');
+                    return this.curso.split('').reverse().join('');
                 }
             }
         });
