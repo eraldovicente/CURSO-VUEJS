@@ -10,8 +10,8 @@
 <body>
 
     <div id="app">
-        <p>Nome: {{ nomeCompleto }}</p>
-        <button @click="alterarNomes">Alterar nomes</button>
+       <p>Nome: {{ nomeCompleto }}</p> 
+       <button @click="alterarNome">Alterar nomes</button>
     </div>
 
 
@@ -19,29 +19,21 @@
         new Vue({
             el: '#app',
             data: {
-                primeiroNome: 'Eraldo',
-                ultimoNome: 'Vicente',
-                // nomeCompleto: 'Eraldo Vicente'
+                nomeCompleto: 'Eraldo Vicente'
             },
-            computed: {
-                nomeCompleto: function() {
-                    return this.primeiroNome + ' ' + this.ultimoNome;
+            watch: {
+                nomeCompleto: function(novoNomeCompleto, antigoNomeCompleto) {
+                    var self = this;
+                    setTimeout(function() {                        
+                        self.nomeCompleto = 'Nome resetado!';
+                    }, 3000);
                 }
             },
-            // watch: {
-            //     primeiroNome: function(novoPrimeiroNome, antigoPrimeiroNome) {
-            //         this.nomeCompleto = novoPrimeiroNome + ' ' + this.ultimoNome;
-            //     }, 
-            //     ultimoNome: function(novoUltimoNome, antigoUltimoNome) {
-            //         this.nomeCompleto = this.primeiroNome + ' ' + novoUltimoNome;
-            //     }
-            // },
             methods: {
-                alterarNomes: function(event) {
-                    this.primeiroNome = 'Vicente';
-                    this.ultimoNome = 'Eraldo';
+                alterarNome: function(event) {
+                    this.nomeCompleto = 'Vicente Eraldo';
                 }
-            }        
+            }     
         });
     </script>
     
