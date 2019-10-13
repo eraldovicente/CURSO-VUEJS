@@ -6,13 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VueJS - Guia Completo</title>
     <script src="https://unpkg.com/vue"></script>
+    <style>
+        .caixa {
+           width: 200px;
+           height: 200px;
+           display: inline-block;
+           margin-right: 10px;
+           background-color: gray;
+       }
+       .coral {
+           background-color: lightcoral;
+       }
+    </style>
 </head>
 <body>
 
     <div id="app">
-       <input :value="nome" @input="nome = $event.target.value">
-       <input v-model="nome">
-       <p>Nome: {{ nome }}</p> 
+       <div class="caixa"
+        :class="{ coral: aplicarClasse }"
+        @click="aplicarClasse = !aplicarClasse"></div> 
     </div>
 
 
@@ -20,8 +32,8 @@
         new Vue({
             el: '#app',
             data: {
-                nome: 'Eraldo'
-            }  
+                aplicarClasse: false
+            } 
         });
     </script>
     
