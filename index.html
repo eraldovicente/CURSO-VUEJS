@@ -10,21 +10,22 @@
 <body>
 
     <div id="app">
-        <ul>
-            <li>Olá VueJS</li>
-            <li>Item 1</li>        
-            <template v-if="mostrar">
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </template>
-        </ul>
+        <button @click="login = !login">Toggle</button>
+        <template v-if="login">
+            <label>Login:</label>
+            <input placeholder="login" key="campo-login">
+        </template>
+        <template v-else>
+            <label>Email:</label>
+            <input placeholder="email" key="campo-email">
+        </template>
     </div>
 
     <script type="text/javascript">
         new Vue({
             el: '#app',
             data: {
-                mostrar: true
+                login: true
             } 
         });
     </script>
