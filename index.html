@@ -10,17 +10,19 @@
 <body>
 
     <div id="app">
-        <p v-if="mostrar">Olá VueJS</p>
-        <p v-else>Até logo VueJS!</p>
-        <button @click="mostrar = !mostrar">Alterar</button>
+        <p v-if="nota === 'A'">Parabéns, você tirou um "A"!</p>
+        <p v-else-if="nota === 'B'">Você tirou um "B", mas pode melhorar!</p>
+        <p v-else-if="nota === 'C'">Você precisa melhorar, estude mais. Sua nota: "C"</p>
+        <p v-else>Nota ainda não publicada.</p>
+        <input v-model="nota" placeholder="Nota">
     </div>
 
     <script type="text/javascript">
         new Vue({
             el: '#app',
             data: {
-                mostrar: true
-            }
+                nota: ''
+            } 
         });
     </script>
     
