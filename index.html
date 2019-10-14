@@ -11,14 +11,21 @@
 
     <div id="app">
         <button @click="mostrar = !mostrar">Toggle</button>
-        <p v-show="mostrar">Diretiva v-show "{{ mostrar }}"</p>
+        <!-- 
+           Usar v-show quando tiver alternância frequente.
+           Usar v-if quando tiver pouca alternância.
+        -->
+        <p v-if="mostrar">Diretiva v-if "{{ mostrar }}": <span>{{ texto }}</span></p>
+        <p v-show="mostrar">Diretiva v-show "{{ mostrar }}": <span>{{ texto }}</span></p>
+        <input v-model="texto">
     </div>
 
     <script type="text/javascript">
         new Vue({
             el: '#app',
             data: {
-                mostrar: true
+                mostrar: true,
+                texto: 'Olá VueJS'
             } 
         });
     </script>
