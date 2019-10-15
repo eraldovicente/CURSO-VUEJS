@@ -9,7 +9,8 @@
 </head>
 <body>
 
-    <div id="app">
+    <div id="app1">
+        <h2>Instância 1</h2>
         <h3 v-if="mostrarMensagem">Título alterado!</h3>
         <p>Título: {{ titulo }}</p>
         <p>Título lower case: {{ tituloLowerCase }}</p>
@@ -17,11 +18,16 @@
         <button @click="alterarTitulo">Alterar título</button>
     </div>
 
+    <div id="app2">
+        <h2>Instância 2</h2>
+        <p>Título: {{ titulo }}</p>
+    </div>
+
     <script type="text/javascript">
         new Vue({
-            el: '#app',
+            el: '#app1',
             data: {
-                titulo: 'Instância Vue',
+                titulo: 'Instância Vue 1',
                 novoTitulo: '',
                 mostrarMensagem: false
             },
@@ -46,6 +52,13 @@
                     }, 3000);
                 }
             }        
+        });
+
+        new Vue({
+            el: '#app2',
+            data: {
+                titulo: 'Instância Vue 2'
+            }
         });
     </script>
     
