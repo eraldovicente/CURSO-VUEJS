@@ -9,64 +9,38 @@
 </head>
 <body>
 
-    <div id="app1">
-        <h2>Instância 1</h2>
-        <h3 v-if="mostrarMensagem">Título alterado!</h3>
-        <p>Título: {{ titulo }}</p>
-        <p>Título lower case: {{ tituloLowerCase }}</p>
-        <input v-model="novoTitulo">
-        <button @click="alterarTitulo">Alterar título</button>
-    </div>
+    <div id="app">
+        <h2>Instância Vue</h2>
+        <p>{{ titulo }}</p>
 
-    <div id="app2">
-        <h2>Instância 2</h2>
-        <p>Título: {{ titulo }}</p>
-        <button @click="alterarTitulo">Alterar título</button>
+        <h3>Propriedades dinâmicas:</h3>
+        <p>{{ novaPropriedade }}</p>
+        <p>{{ usuario }}</p>
     </div>
 
     <script type="text/javascript">
 
-  var vm1 = new Vue({
-            el: '#app1',
+   var vm = new Vue({
+            el: '#app',
             data: {
-                titulo: 'Instância Vue 1',
-                novoTitulo: '',
-                mostrarMensagem: false
-            },
-            methods: {
-                alterarTitulo: function() {
-                    this.titulo = this.novoTitulo;
-                    this.novoTitulo = '';
-                }
-            },
-            computed: {
-                tituloLowerCase: function() {
-                    return this.titulo.toLowerCase().split(' ').join('-');
-                }
-            },
-            watch: {
-                titulo: function(novoTitulo, antigoTitulo) {
-                    console.log('Titulo alterado: ', 'de "', antigoTitulo, '" para "', novoTitulo, '"');
-                    this.mostrarMensagem = true;
-                    var self = this;
-                    setTimeout(function() {
-                        self.mostrarMensagem = false;
-                    }, 3000);
-                }
-            }        
+                titulo: 'Curso de VueJS',
+                usuario: {}
+            }      
         });
 
-var vm2 =   new Vue({
-            el: '#app2',
-            data: {
-                titulo: 'Instância Vue 2'
-            },
-            methods: {
-                alterarTitulo: function(event) {
-                    vm1.titulo = 'Curso de VueJS 1';
-                }
-            }
+        // vm.titulo
+        // vm.novaPropriedade = 'Nova propriedade!'; // Não reativo
+        console.log(vm);
+
+        setTimeout(function() {
+            vm.novaPropriedade = 'Nova propriedade!'; // Não é reativo sozinho
+            vm.$set(vm.usuario, 'nome', 'Eraldo Vicente');
+            setTimeout(function() {
+                vm.novaPropriedade = 'Nova propriedade alterada!'; // // Não é reativo sozinho
+                //  Vue.set(vm.usuario, 'email', 'eraldo@email.com');
+            }, 3000);
         });
+
     </script>
     
 </body>
