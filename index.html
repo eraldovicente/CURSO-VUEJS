@@ -10,46 +10,42 @@
 <body>
 
     <div id="app">
-        <p>Objetos:</p>
-        <ul>
-            <li v-for="(valor, chave) in produto">{{ chave }}: {{ valor }}</li>
-        </ul>
-        <button @click="adicionarPropriedade">Adicionar propriedade</button>
-        <button @click="substituirObjeto">Substituir objeto</button>
+        <h3 v-if="mostrarMensagem">Título alterado!</h3>
+        <p>Título: {{ titulo }}</p>
+        <p>Título lower case: {{ tituloLowerCase }}</p>
+        <input v-model="novoTitulo">
+        <button @click="alterarTitulo">Alterar título</button>
     </div>
 
     <script type="text/javascript">
         new Vue({
             el: '#app',
             data: {
-                produto: {
-                    id: 2,
-                    nome: 'Teclado',
-                    marca: 'Dell'
-                },
-                usuario: {
-                    nome: '',
-                    idade: 0
-                }
+                titulo: 'Instância Vue',
+                novoTitulo: '',
+                mostrarMensagem: false
             },
             methods: {
-                adicionarPropriedade: function(event) {
-                    // this.usuario = { nome: 'Plínio'};
-                    // this.produto.preco = 100; // Não reativo
-                    // Vue.set(this.produto, 'preco', 100); // Reativo
-                    this.$set(this.produto, 'preco', 100); // Reativo
-                },
-                substituirObjeto: function(event) {
-                    // Object.assign(this.produto, {
-                    //     preco: 50,
-                    //     cor: 'preta'
-                    // }); // Não reativa
-                    this.produto = Object.assign({}, this.produto, {
-                        preco: 50,
-                        cor: 'preta'
-                    });
+                alterarTitulo: function() {
+                    this.titulo = this.novoTitulo;
+                    this.novoTitulo = '';
                 }
-            }         
+            },
+            computed: {
+                tituloLowerCase: function() {
+                    return this.titulo.toLowerCase().split(' ').join('-');
+                }
+            },
+            watch: {
+                titulo: function(novoTitulo, antigoTitulo) {
+                    console.log('Titulo alterado: ', 'de "', antigoTitulo, '" para "', novoTitulo, '"');
+                    this.mostrarMensagem = true;
+                    var self = this;
+                    setTimeout(function() {
+                        self.mostrarMensagem = false;
+                    }, 3000);
+                }
+            }        
         });
     </script>
     
