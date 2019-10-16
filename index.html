@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VueJS - Guia Completo</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
 </head>
 <body>
 
     <div id="app">
-        <h2>Instância Vue</h2>
-        <button @click="mostrar = !mostrar">Toggle</button>
-        <p v-if="mostrar">{{ titulo }}</p>
+        <h2 ref="meuTitulo">{{ titulo }}</h2>
+        <button @click="alterarTitulo">Alterar título</button>
     </div>
 
     <script type="text/javascript">
-   var data = {
-                titulo: 'Curso de VueJS',
-                mostrar: true
-              };
 
-   var vm = new Vue({
+        var vm = new Vue({
             el: '#app',
-            data: data
+            data: {
+                titulo: 'Vue'
+            },
+            methods: {
+                alterarTitulo: function (event) {
+                    this.$refs.meuTitulo.innerText = 'Curso de VueJs';
+                }
+            }
         });
 
         console.log(vm);
 
-        console.log(vm.$el === document.getElementById('app'));
-
-        console.log(vm.$data === data);
-
-        setTimeout(function() {
-            data.titulo = 'VueJS';
-        }, 3000);
-
+        // O temporizador não funcionou.
+        // Era para após clicar no botão alterar, antes do decorrer de 5 secundos
+        // o título 'Instância Vue' aparecer.
+        // Mas não está funcionando.
+        setTimeout(function () {
+            vm.titulo = 'Instância Vue';
+        }, 5000);
     </script>
-    
+
 </body>
+
 </html>
