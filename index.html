@@ -11,33 +11,51 @@
 <body>
 
     <div id="app">
-        <h2>{{ curso }}</h2>
+        <h2>{{ titulo }}</h2> 
+        <button @click="alterarTitulo">Alterar titulo</button>
+        <button @click="destruirInstancia">Destruir instância</button>
     </div>
-
-    <div id="app2"></div>
 
     <script type="text/javascript">
 
         var vm = new Vue({
+            el: '#app',
             data: {
-                curso: 'Curso de VueJS'
+                titulo: 'Curso de VueJS'
+            },
+            methods: {
+                alterarTitulo: function(event) {
+                    this.titulo = 'Curso de VueJS - Guia Completo'
+                },
+                destruirInstancia: function(event) {
+                    this.$destroy();
+                }
+            },
+            beforeCreate: function() {
+                console.log('01 - beforeCreate()');
+            },
+            created: function() {
+                console.log('02 - created()');
+            },
+            beforeMount: function() {
+                console.log('03 - beforeMount()');
+            },
+            mounted: function() {
+                console.log('04 - mounted()');
+            },
+            beforeUpdate: function() {
+                console.log('05 - beforeUpdate');
+            },
+            updated: function() {
+                console.log('06 - updated()');
+            },
+            beforeDestroy: function() {
+                console.log('07 - beforeDestroy');
+            },
+            destroyed: function() {
+                console.log('08 - destroyed()');
             }
         });
-
-        // vm.$mount('#app');
-
-        setTimeout(function() {
-            vm.$mount('#app');
-        }, 3000);
-
-        var vm2 = new Vue({
-            template: '<h2>Usando template</h2>'
-        });
-
-        // vm2.$mount('#app2');
-        vm2.$mount();
-        document.getElementById('app2').appendChild(vm2.$el);
-
     </script>
 
 </body>
